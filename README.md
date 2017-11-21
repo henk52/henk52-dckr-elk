@@ -3,6 +3,7 @@
 * https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.0.0-x86_64.rpm
 * https://docs.docker.com/engine/reference/builder/#cmd
 * Learning Docker 2ed.
+* https://www.elastic.co/downloads/beats/filebeat
 
 Generate the image
 1. sudo docker build .
