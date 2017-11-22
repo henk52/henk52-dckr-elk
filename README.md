@@ -22,3 +22,28 @@ Microservices Architecture (MSA).
 
 * https://blog.trifork.com/2014/03/11/using-supervisor-with-docker-to-manage-processes-supporting-image-inheritance/
 * http://tiborsimko.org/docker-running-multiple-processes.html
+
+
+## Testing
+/usr/bin/filebeat run -N --once -c /etc/filebeat/filebeat.yml
+
+# Troubleshooting
+
+### Filebeat
+
+#### Exiting: Error importing Kibana dashboards: fail to create the Elasticsearch loader: Elasticsearch output is not configured/enabled
+
+
+### Elasticsearch
+
+####
+
+useradd -m nimitz
+   35  chown -r nimitz /etc/sysconfig/elasticsearch
+   36  chown -R nimitz /etc/sysconfig/elasticsearch
+   39  chown -R nimitz /etc/elasticsearch
+   41  chown -R nimitz /var/log/elasticsearch
+   43  chown -R nimitz /var/lib/elasticsearch
+   47  mkdir /var/lib/elasticsearch/nodes
+   48  chown nimitz /var/lib/elasticsearch/nodes
+   49  su nimitz
