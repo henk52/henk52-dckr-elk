@@ -1,4 +1,4 @@
-filebeat*
-elasticsearch*
-logstash*
-kibana*
+filebeat*.rpm
+elasticsearch*.rpm
+logstash*.rpm
+kibana*.rpm

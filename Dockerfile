@@ -3,7 +3,8 @@ MAINTAINER Henry K
 
 # expose the kibana port.
 EXPOSE 5601/tcp
-
+# expose the elasticsearch port.
+EXPOSE 9200/tcp
 
 # https://github.com/Krijger/docker-cookbooks/blob/master/supervisor/Dockerfile
 # supervisor installation &&
@@ -30,21 +31,29 @@ RUN rpm -ivh /vagrant/filebeat*.rpm &&\
 
 
 # Install Elastisearch
-COPY elasticsearch* /vagrant/
+COPY elasticsearch*.rpm /vagrant/
+COPY elasticsearch.yml /etc/elasticsearch/
 # required by elasticsearch.
 RUN dnf install -y java-1.8.0-openjdk-headless &&\
   rpm -ivh /vagrant/elasticsearch*.rpm &&\
+  chown -R elasticsearch /etc/sysconfig/elasticsearch &&\
+  chown -R elasticsearch /var/log/elasticsearch &&\
+  mkdir /var/lib/elasticsearch/nodes &&\
+  chown -R elasticsearch /var/lib/elasticsearch &&\
   rm /vagrant/elasticsearch*.rpm
 
 
+
 # Install logstash
+COPY logstash.conf /etc/logstash/conf.d/
 COPY logstash* /vagrant/
 RUN rpm -ivh /vagrant/logstash*.rpm &&\
    rm /vagrant/logstash*.rpm
 
 
 # Install Kibana
-COPY kibana* /vagrant/
+COPY kibana.yml /etc/kibana/
+COPY kibana*.rpm /vagrant/
 RUN rpm -ivh /vagrant/kibana*.rpm &&\
   rm /vagrant/kibana*.rpm
 

@@ -1,0 +1,39 @@
+#=========================== Filebeat prospectors =============================
+
+filebeat.prospectors:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/*.log
+#============================= Filebeat modules ===============================
+#filebeat.config.modules:
+  # Glob pattern for configuration loading
+  #path: ${path.config}/modules.d/*.yml
+  # Set to true to enable config reloading
+  #reload.enabled: false
+  # Period on which files under path should be checked for changes
+  #reload.period: 10s
+
+
+# https://www.elastic.co/guide/en/beats/filebeat/current/configuration-template.html
+#setup.template.name: "filebeat"
+#setup.template.fields: "fields.yml"
+#setup.template.overwrite: false
+#setup.template.settings:
+#  index.number_of_shards: 1
+#  index.number_of_replicas: 1
+#================================ Outputs =====================================
+
+
+#----------------------------- Logstash output --------------------------------
+output.logstash:
+  hosts: ["localhost:5044"]
+
+#============================== Kibana =====================================
+setup.kibana:
+  host: "localhost:5601"
+
+# https://www.elastic.co/guide/en/beats/filebeat/current/configuration-dashboards.html
+# Dashboard loading is only attempted at Beat startup. If Kibana is not available at startup, Filebeat will stop with an error.
+#setup.dashboards.enabled: true
+# or options: setup.dashboards.directory, setup.dashboards.url, or setup.dashboards.file.
