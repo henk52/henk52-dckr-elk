@@ -11,6 +11,7 @@ EXPOSE 9200/tcp
 # create directory for child images to store configuration in
 RUN dnf install -y supervisor && \
   mkdir -p /var/log/supervisor && \
+  mkdir -p /var/log/supervisor_child &&\
   mkdir -p /etc/supervisor/conf.d
 
 # supervisor base configuration
@@ -40,6 +41,7 @@ RUN dnf install -y java-1.8.0-openjdk-headless &&\
   chown -R elasticsearch /var/log/elasticsearch &&\
   mkdir /var/lib/elasticsearch/nodes &&\
   chown -R elasticsearch /var/lib/elasticsearch &&\
+  chown -R elasticsearch /usr/share/elasticsearch &&\
   rm /vagrant/elasticsearch*.rpm
 
 

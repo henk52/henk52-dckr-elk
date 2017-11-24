@@ -70,3 +70,22 @@ usage:
   bin/logstash -i SHELL [--log.level fatal|error|warn|info|debug|trace]
   bin/logstash -V [--log.level fatal|error|warn|info|debug|trace]
   bin/logstash --help
+
+
+#### bound or publishing to a non-loopback or non-link-local address, enforcing bootstrap checks
+See: https://github.com/elastic/elasticsearch/issues/19987
+
+add to: elasticsearch.yml
+```
+transport.host: localhost
+network.host: 0.0.0.0
+```
+
+log output stdout; /var/log/supervisor_child/elasticsearch-stdout---supervisor-_alqa0.log
+```
+] publish_address {172.17.0.4:9300}, bound_addresses {[::]:9300}
+[2017-11-24T08:24:38,757][INFO ][o.e.b.BootstrapChecks    ] [e8ZWX47] bound or publishing to a non-loopback or non-link-local address, enforcing bootstrap checks
+ERROR: [1] bootstrap checks failed
+[1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+```
+

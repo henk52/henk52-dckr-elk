@@ -2,3 +2,5 @@ filebeat*.rpm
 elasticsearch*.rpm
 logstash*.rpm
 kibana*.rpm
+*.log
+index.html*
