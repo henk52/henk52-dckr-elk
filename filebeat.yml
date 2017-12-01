@@ -26,8 +26,14 @@ filebeat.prospectors:
 
 
 #----------------------------- Logstash output --------------------------------
+# Setting up the use of logstash
+# https://www.elastic.co/guide/en/beats/libbeat/1.2/logstash-installation.html#logstash-setup
+# https://www.elastic.co/guide/en/beats/filebeat/current/logstash-output.html
 output.logstash:
   hosts: ["localhost:5044"]
+  timeout: 300
+  slowstart: true
+
 
 #============================== Kibana =====================================
 setup.kibana:

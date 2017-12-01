@@ -20,14 +20,11 @@ ADD elk_stack.d.conf /etc/supervisor/conf.d/
 
 RUN mkdir /vagrant
 
-COPY filebeat.yml /etc/filebeat/filebeat.yml
-#ADD filebeat.yml /etc/filebeat/filebeat.yml
 
 # COPY <src> ... <dst>
 COPY filebeat*.rpm /vagrant/
 RUN rpm -ivh /vagrant/filebeat*.rpm &&\
-  rm /vagrant/filebeat*.rpm &&\
-  chmod g-w /etc/filebeat/filebeat.yml
+  rm /vagrant/filebeat*.rpm
 
 
 
@@ -72,6 +69,8 @@ RUN rpm -ivh /vagrant/kibana*.rpm &&\
 #   ./filebeat -c filebeat.yml -e
 
 
+COPY filebeat.yml /etc/filebeat/filebeat.yml
+RUN  chmod g-w /etc/filebeat/filebeat.yml
 
 # A container’s main running process is the ENTRYPOINT and/or CMD at the end of the Dockerfile
 # https://docs.docker.com/engine/admin/multi-service_container/
